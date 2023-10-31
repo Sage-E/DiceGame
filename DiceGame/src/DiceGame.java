@@ -3,40 +3,42 @@ import java.util.Scanner;
 
 public class DiceGame {
 	private static String[][] language; 
-
+	private static int Lang=0; 
 	public static void main(String[] args) {
 		int die1;
 		int die2;
 		String[] playerChoices;
 		language = initLang();
+		String langChoice = getInput(language[Lang][10]); 
+		Lang = Integer.parseInt(langChoice); 
 		die1 = roll();
 		die2 = roll();
 		String choice;
-		choice = getInput(language[0][0]);
+		choice = getInput(language[Lang][0]);
 		choice = choice.toLowerCase();
 		int count = 0;
-		String playerCount = getInput(language[0][1]);
+		String playerCount = getInput(language[Lang][1]);
 		count = Integer.parseInt(playerCount);
 		playerChoices = new String[count];
-		while(choice.equals(language[0][2])) {
+		while(choice.equals(language[Lang][2])) {
 			
 			for(int c= 0; c < count; c++) {
-			playerChoices[c] = getInput(language[0][3]+(c+1)+language[0][4]);
+			playerChoices[c] = getInput(language[Lang][3]+(c+1)+language[Lang][4]);
 			
 			}
-			System.out.println(language[0][5]+die1+language[0][6] +die2);
+			System.out.println(language[Lang][5]+die1+language[Lang][6] +die2);
 			//Start a new loop here.
 			for(int c=0; c<count;c++) {
 				if(didIWin(die1,die2,playerChoices[c]))
 				{
-					System.out.println(language[0][3]+(c+1)+language[0][7]);
+					System.out.println(language[Lang][3]+(c+1)+language[Lang][7]);
 				}else
 				{
-					System.out.println(language[0][3]+(c+1)+language[0][8]);
+					System.out.println(language[Lang][3]+(c+1)+language[Lang][8]);
 				}
 			}
 			
-			choice = getInput(language[0][9]);
+			choice = getInput(language[Lang][9]);
 			choice = choice.toLowerCase();
 			die1 = roll();
 			die2 = roll();
@@ -45,11 +47,18 @@ public class DiceGame {
 	private static String[][] initLang() {
 		String [][] temp = new String[][] {
 			{"Do you want to play?\nYes\nNo", "How many players are there?", "yes", "Player ", 
-				": [0] Even\n[1] Odd", "Die 1: ", "\nDie 2:", " wins!",  " loses!"}
+				": [0] Even\n[1] Odd", "Die 1: ", "\nDie 2:", " wins!",  " loses!" ,
+				"Do you want to play again", "Enter Language: \nEnglish[0]\n Hawaiian Pidegen"},
+			{
+				"Like try?\nYessah\nNo","How many dakine Braddahs?", "yessah", "Braddah", 
+				":  [0] Even\n[1] Odd", "Die 1:", "\nDie 2", "Winnah", "Lossah", 
+				"Like try again ","Enter Language: \nEnglish[0]\n Hawaiian Pidegen"}
+		
+		
 		};
 		
 		
-		return null;
+		return temp;
 	
 	}
 	
